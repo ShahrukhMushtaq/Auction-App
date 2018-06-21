@@ -1,0 +1,319 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css");
+
+*,*:before,*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+body {
+  font-family: sans-serif,helvetica;
+  font-size: 17px;
+  font-weight: 400;
+  background: #e7e7e7;
+}
+
+
+#menu-toggle[type="checkbox"]:not(:checked),
+#menu-toggle[type="checkbox"]:checked {
+  display: none;
+}
+
+.menu-toggle-close,
+.menu-toggle-burger,
+.menu-toggle-burger:before,
+.menu-toggle-burger:after {
+  position: absolute;
+  top: 1.6em;
+  left: 1.6em;
+  width: 40px;
+  height: 7px;
+  background-color: #e7e7e7;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 100;
+  -moz-transition: .1s linear;
+  -webkit-transition: .1s linear;
+  transition: .1s linear;
+}
+.menu-toggle-burger:before {
+  content: "";
+  top: 12px;
+  left: 0;
+}
+.menu-toggle-burger:after {
+  content: "";
+  top: 25px;
+  left: 0;
+}
+.menu-toggle-close {
+  background: none;
+}
+
+.menu-body {
+  position: absolute;
+  width: 0.1em;
+  height: 0.1em;
+  margin: 0;
+  padding: 0;
+  background: #151719; 
+  z-index: 10;
+  -webkit-animation: FlowOut 0.35s both;
+  -moz-animation: FlowOut 0.35s both;
+  animation: FlowOut 0.35s both;
+}
+
+
+/* Change Burger Menu to Cross on Check */
+#menu-toggle:checked + .menu-toggle-close + .menu-toggle-burger:after {
+  top: 0;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transition: -webkit-transform .1s linear;
+  -moz-transition: -moz-transform .1s linear; 
+  transition: transform .1s linear; 
+}
+#menu-toggle:checked + .menu-toggle-close + .menu-toggle-burger {
+  top: 35px;
+  -webkit-transform: rotate(405deg);
+  -moz-transform: rotate(405deg);
+  transform: rotate(405deg);
+  -webkit-transition: -webkit-transform .1s linear;
+  -moz-transition: -moz-transform .1s linear; 
+  transition: transform .1s linear; 
+
+}
+#menu-toggle:checked + .menu-toggle-close + .menu-toggle-burger:before {
+  top: 0;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transition: -webkit-transform .1s linear;
+  -moz-transition: -moz-transform .1s linear; 
+  transition: transform .1s linear; 
+}
+
+
+#menu-toggle:checked + .menu-toggle-close + .menu-toggle-burger + .menu-body {
+  -webkit-animation: FlowIn 1s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+  animation: FlowIn 1s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+#menu-toggle:checked + .menu-toggle-close ~ .menu-body .menu__body-element, 
+#menu-toggle:checked + .menu-toggle-close ~ .menu-body .menu__body-link {
+  display: block;
+}
+
+.logo{
+position: absolute;
+margin-left: 85%;
+
+}
+
+
+/* Front-side Section Styles */
+#sec-2 .front-side {
+  width: 100vw;
+  height: 100vh;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+  background-color: #2b3943;
+}
+.center-xy {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.sub-title {
+  display: block;
+  font-size: 1em;
+  letter-spacing: 0.15em;
+  color: #eee;
+}
+.title {
+  margin-top: 25px;
+  display: inline-block;
+  margin: 0;
+  font-family: 'Francois One', sans-serif;
+  font-size: 400%;
+}
+
+
+/* Back-side Section Styles */
+.menu-body .left,.right {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.menu-body .left {
+  font-family: 'Oswald', helvetica, sans-serif;
+  background: #151719;
+  float: left;
+  color: #fff;
+}
+.menu-body .left h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 5em;
+  margin: 230px 0 10px 0;
+  line-height: 1.1;
+  color: white;
+}
+.menu-body .left p {
+  text-align: center;
+  font-size: 2em;
+  margin: 0;
+}
+.menu-body .left ul{
+  margin-top: 30px;
+  text-align: center;
+}
+.menu-body .left .social {
+  color: #fff;
+  text-decoration: center;
+  list-style: none;
+}
+.menu-body .left .social i {
+font-size: 35px;
+  margin-right: 20px;
+  cursor: pointer;
+  color: gray;
+}
+.menu-body .left .social .fa-facebook-official:hover {
+  color: #3a5795;
+}
+.menu-body .left .social .fa-twitter-square:hover {
+  color: #00acee;
+}
+.menu-body .left .social .fa-google-plus-square:hover {
+  color: #dd4b39;
+}
+.menu-body .left .social .fa-linkedin-square:hover {
+  color: #0e76a8;
+}
+
+.menu-body .right {
+  float: right;
+  background-color: #2a2e31;
+}
+.menu-body .right .container {
+  margin: 0 auto;
+  margin-top: 130px;
+}
+.menu-body .right .container form {
+  text-align: center;
+}
+.menu-body .right .container h1 {
+  text-align: center;
+  font-size: 45px;
+  color: #e7e7e7;
+  margin: 0 0 .75em;
+  font-family: sans-serif,helvetica;
+}
+.menu-body .right .container .form-row {
+  position: relative;  
+  margin-bottom: 22px;
+}
+.menu-body .right .container input {
+  font-size: 19px;
+  padding: 14px;
+  border: 1px solid #cbcbda;
+  border-radius: 5px;
+  outline: none;
+}
+.menu-body .right .container button {
+  text-transform: uppercase;
+  background: #0d5c6c;
+  border: none;
+  outline: none;
+  margin-top: 5px;
+  padding: 12px;
+  border-radius: 5px;
+  color: #e7e7e7;
+  font-size: 22px;
+  opacity: 1;
+  transition:opacity 0.5s ease-out;
+}
+.menu-body .right .container button:hover {
+  opacity: 0.9;
+}
+
+/* Keyframes */
+@-moz-keyframes FlowIn {
+  50%, 100% {
+    width: 100vw;
+    height: 100vh;
+  }
+  100% {
+    border-radius: 0;
+  }
+}
+@-webkit-keyframes FlowIn {
+  50%, 100% {
+    width: 100vw;
+    height: 100vh;
+  }
+  100% {
+    border-radius: 0;
+  }
+}
+@keyframes FlowIn {
+  50%, 100% {
+    width: 100vw;
+    height: 100vh;
+  }
+  100% {
+    border-radius: 0;
+  }
+}
+
+
+@-webkit-keyframes FlowOut {
+  0% {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+@-moz-keyframes FlowOut {
+  0% {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+@keyframes FlowOut {
+  0% {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+.text { 
+	font: bold 200% Consolas;
+	border-right: .1em solid black;
+	width: 28ch;
+	white-space: nowrap;
+	overflow: hidden;
+	margin: 30px;
+	animation: type 4s steps(38, end) ,
+	blink-caret .4s step-end infinite alternate;
+}
+
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+@-webkit-keyframes type { from { width: 0; } }
+@-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
