@@ -1,5 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 /* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
 /* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
 /* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+/* https://media.istockphoto.com/videos/auction-newspaper-headline-video-id92877026?s=640x640 */
+body {    
+    margin: 0;    
+    font-family: Roboto, sans-serif; 
+    /* background: url('./assets/images/hammer-1707725_1280.jpg') no-repeat; */
+    background-color: aliceblue;
+}   
+.demo-toolbar {    
+    display: flex;    
+    align-items: center;    
+    width: 26%;    
+}    
+.example-spacer {
+    flex: 1 1 auto;
+  }

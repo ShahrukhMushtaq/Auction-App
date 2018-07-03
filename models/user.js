@@ -37,3 +37,5 @@ module.exports = (sequelize, DataTypes) => {
   };
   return User;
 };
+
+// module.exports = User;

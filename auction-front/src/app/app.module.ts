@@ -1,25 +1,81 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { UserService } from "./services/user.service";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {
+  MatButtonModule, 
+  MatCheckboxModule,      
+  MatMenuModule,      
+  MatToolbarModule,
+  MatTableModule,
+  MatTabsModule ,  
+  MatIconModule,      
+  MatCardModule,      
+  MatFormFieldModule,      
+  MatInputModule,      
+  MatDatepickerModule,     
+  MatNativeDateModule,      
+  MatRadioModule,      
+  MatSelectModule,      
+  MatOptionModule,   
+  MatSlideToggleModule,
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher
+} from '@angular/material';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { FormBuilder, FormGroup, Validators ,FormsModule,NgForm, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      { path: 'Login', component: LoginComponent },
+      { path: 'Register', component: RegisterComponent },
+      { path: 'dashboard', component: DashboardComponent }
+    ]),
+    HttpModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatGridListModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatTableModule,
+    MatToolbarModule,      
+    MatIconModule,      
+    MatCardModule,      
+    MatFormFieldModule,      
+    MatInputModule,      
+    MatDatepickerModule,   
+    MatNativeDateModule,      
+    MatRadioModule,      
+    MatSelectModule,      
+    MatOptionModule,      
+    MatSlideToggleModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  //  {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

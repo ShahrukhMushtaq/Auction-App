@@ -24,7 +24,7 @@ main.me = function(req, res) {
     if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });    
     jwt.verify(token, "mySecret", function(err, decoded) {
     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-    console.log(decoded.id);
+    // console.log(decoded.id);
      var sql = "SELECT * FROM users WHERE id=?";
      let userId = [decoded.id];
      db.db.query(sql , [userId],(err , user) => {
@@ -46,42 +46,40 @@ main.home = function (req, res, next) {
 main.signup = function (req, res, next) {
    // const user = req.body;
     //console.log(user);
-    var hash = bcrypt.hashSync(req.body.password, 8);
-
+     var hash = bcrypt.hashSync(req.body.Password, 8);
     var sql ="INSERT INTO users (name,email,password,age,phone,gender) VALUES ?";
     let userr = [
-        [req.body.name, req.body.email, hash, req.body.age, req.body.phone, req.body.gender]
+        [req.body.Name, req.body.Email, hash, req.body.Age, req.body.Phone, req.body.Gender]
     ];
     db.db.query(sql, [userr], function (err, user) {
     if (err) throw err;
-    console.log(user);
+    // console.log(user);
     // create a token
     var token = jwt.sign({ id: user.insertId }, "mySecret", {
         expiresIn: 86400 // expires in 24 hours
       });
-    console.log("1 record inserted", user.insertId);
-    res.status(200).send({ auth: true, token: token });
+    res.send({ status:200,auth: true, token: token });
   });
 }
 
 main.login = function (req, res, next) {
 
     var sql_query = "SELECT * FROM users WHERE email=?";
-    let emId = [req.body.email];
+    let emId = [req.body.Email];
     db.db.query(sql_query ,[emId] , (err , result)=> {
         if (err) return res.status(500).send('Error on the server.');
         if (!result) return res.status(404).send('No user found.');
-        console.log(req.body.password);
-        console.log(result[0].password);
+        // console.log(req.body.password);
+        // console.log(result[0].password);
         //result.toString();
         var passwordIsValid = bcrypt.compareSync(req.body.password, result[0].password);
-        console.log(passwordIsValid);
-        console.log(result[0].id);
+        // console.log(passwordIsValid);
+        // console.log(result[0].id);
         if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
         var token = jwt.sign({ id : result[0].id},"mySecret",{
             expiresIn: 86400
         });
-        res.status(200).send({ auth: true, token: token });
+        res.send({ status:200, auth: true, token: token });
         
     });
   }
