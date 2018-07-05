@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { JwtHelper } from "angular2-jwt";
 import { Http,Headers } from "@angular/http";
 import 'rxjs/add/operator/map';
 
@@ -13,12 +14,48 @@ export class UserService {
   post(url , data){
     var header=new Headers();
     header.append('Content-Type','application/json');
-    return this.http.post(this.base_url+url,data,{headers:header}).map(res => res.json());
+    return this.http.post(this.base_url+url,data,{headers:header})
+    .map( res => {
+      let result = res.json();
+      if(result && result.token){
+        localStorage.setItem('Token', result.token);
+        return true;
+      }
+      return false;
+    });
   }
 
   authenticateUser(url , data){
-    return this.http.post(this.base_url+url , data).map(res => res.json());
+    return this.http.post(this.base_url+url , data)
+    .map( res => {
+      let result = res.json();
+      if(result && result.token){
+        localStorage.setItem('Token', result.token);
+        return true;
+      }
+      return false;
+    });
   }
 
+  logout(){
+    localStorage.removeItem('Token');
+  }
+
+  isLoggedIn(){
+    let jwtHelper = new JwtHelper();
+    let token = localStorage.getItem('Token');
+    if(!token) return false;
+
+    let expirationDate = jwtHelper.getTokenExpirationDate(token);
+    let isExpired = jwtHelper.isTokenExpired(token);
+    return !isExpired;
+  }
+
+  get currentUser(){
+    let token = localStorage.getItem('Token');
+    if(!token) return null;
+
+    return new JwtHelper().decodeToken(token);
+  }
 
 }

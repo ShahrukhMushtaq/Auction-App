@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -34,6 +35,7 @@ import { FormBuilder, FormGroup, Validators ,FormsModule,NgForm, ReactiveFormsMo
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     RouterModule.forRoot([
       { path: 'Login', component: LoginComponent },
       { path: 'Register', component: RegisterComponent },
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
     ]),
     HttpModule,
     MatButtonModule,
@@ -73,7 +76,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatSlideToggleModule
   ],
   providers: [
-    UserService
+    UserService,
+    AuthGuard
   //  {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent]

@@ -55,8 +55,8 @@ main.signup = function (req, res, next) {
     if (err) throw err;
     // console.log(user);
     // create a token
-    var token = jwt.sign({ id: user.insertId }, "mySecret", {
-        expiresIn: 86400 // expires in 24 hours
+    var token = jwt.sign({ id: user.insertId , name: req.body.Name }, "mySecret", {
+        expiresIn: 7200
       });
     res.send({ status:200,auth: true, token: token });
   });
@@ -69,15 +69,15 @@ main.login = function (req, res, next) {
     db.db.query(sql_query ,[emId] , (err , result)=> {
         if (err) return res.status(500).send('Error on the server.');
         if (!result) return res.status(404).send('No user found.');
-        // console.log(req.body.password);
-        // console.log(result[0].password);
+        console.log(req.body.password);
+        console.log(result);
         //result.toString();
         var passwordIsValid = bcrypt.compareSync(req.body.password, result[0].password);
         // console.log(passwordIsValid);
         // console.log(result[0].id);
         if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
-        var token = jwt.sign({ id : result[0].id},"mySecret",{
-            expiresIn: 86400
+        var token = jwt.sign({ id : result[0].id , name : result[0].name},"mySecret",{
+            expiresIn: 7200
         });
         res.send({ status:200, auth: true, token: token });
         

@@ -46,11 +46,8 @@ export class RegisterComponent implements OnInit {
   {  
     console.log(form.value); 
      this.service.post('signup' ,form.value).subscribe(res =>{
-       if(res.status == 200){
-          localStorage.setItem('Token',res.token);
-          localStorage.setItem('User',form.value.Email);
-          this.router.navigate(['dashboard']);
-          console.log(form.value)
+       if(res){
+          this.router.navigate(['dashboard']);          
        }
      });
   }  

@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">    
+    <img class="mdc-image-list__image" src="../../../assets/images/logo.png">
+    <span class="demo-toolbar"></span>
+    <span>Online Auction</span>  
+    <span class="example-spacer"></span>
+
+    <a *ngIf="!upvc.isLoggedIn()" mat-button routerLink="/Login">Login</a> 
+    <a *ngIf="!upvc.isLoggedIn()" mat-button routerLink="/Register">Register</a>  
+    <a *ngIf="upvc.isLoggedIn()" mat-button (click)="logout()" routerLink="/Login">Logout</a>  
+      
+</mat-toolbar>

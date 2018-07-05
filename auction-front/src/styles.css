@@ -12,11 +12,3 @@ body {
     /* background: url('./assets/images/hammer-1707725_1280.jpg') no-repeat; */
     background-color: aliceblue;
 }   
-.demo-toolbar {    
-    display: flex;    
-    align-items: center;    
-    width: 26%;    
-}    
-.example-spacer {
-    flex: 1 1 auto;
-  }
