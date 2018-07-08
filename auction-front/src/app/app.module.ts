@@ -36,6 +36,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { NavComponent } from './components/nav/nav.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
-    NavComponent
+    NavComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +54,11 @@ import { NavComponent } from './components/nav/nav.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
       { path: 'Login', component: LoginComponent },
       { path: 'Register', component: RegisterComponent },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
     ]),
     HttpModule,
     MatButtonModule,

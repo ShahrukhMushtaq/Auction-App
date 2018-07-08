@@ -44,10 +44,10 @@ export class RegisterComponent implements OnInit {
   // Executed When Form Is Submitted  
   onFormSubmit(form:NgForm)  
   {  
-    console.log(form.value); 
+    // console.log(form.value); 
      this.service.post('signup' ,form.value).subscribe(res =>{
        if(res){
-          this.router.navigate(['dashboard']);          
+          this.router.navigate(['dashboard']);
        }
      });
   }  

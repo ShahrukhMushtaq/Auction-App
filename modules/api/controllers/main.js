@@ -76,7 +76,7 @@ main.login = function (req, res, next) {
         // console.log(passwordIsValid);
         // console.log(result[0].id);
         if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
-        var token = jwt.sign({ id : result[0].id , name : result[0].name},"mySecret",{
+        var token = jwt.sign({ id : result[0].id , user : result[0]},"mySecret",{
             expiresIn: 7200
         });
         res.send({ status:200, auth: true, token: token });

@@ -3,9 +3,22 @@
     <span class="demo-toolbar"></span>
     <span>Online Auction</span>  
     <span class="example-spacer"></span>
-
-    <a *ngIf="!upvc.isLoggedIn()" mat-button routerLink="/Login">Login</a> 
-    <a *ngIf="!upvc.isLoggedIn()" mat-button routerLink="/Register">Register</a>  
-    <a *ngIf="upvc.isLoggedIn()" mat-button (click)="logout()" routerLink="/Login">Logout</a>  
-      
+    <a *ngIf="!upvc.isLoggedIn()" mat-raised-button color="primary" routerLink="/Login">
+        Login
+    </a>
+    &nbsp;&nbsp;
+    <a *ngIf="!upvc.isLoggedIn()" mat-raised-button color="primary" routerLink="/Register">
+        Register
+    </a>  
+    <a *ngIf="upvc.isLoggedIn()" mat-raised-button color="primary" routerLink="/profile">
+        {{ upvc.currentUser.user.name}}
+    </a> 
+    &nbsp;&nbsp;
+    <a *ngIf="upvc.isLoggedIn()" mat-raised-button color="primary" routerLink="/dashboard">
+        Home
+    </a> 
+    &nbsp;&nbsp;
+    <a *ngIf="upvc.isLoggedIn()" mat-raised-button color="primary" (click)="logout()" routerLink="/Login">
+        Logout
+    </a>     
 </mat-toolbar>
