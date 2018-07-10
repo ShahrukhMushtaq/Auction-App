@@ -32,6 +32,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       allowNull: false
     },
+    location: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    userAvatar: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    }
   }, {});
   User.associate = function(models) {
     // associations can be defined here

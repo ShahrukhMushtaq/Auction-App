@@ -26,6 +26,12 @@ module.exports = {
       gender: {
         type: Sequelize.STRING
       },
+      location: {
+        type: Sequelize.STRING
+      },
+      userAvatar: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
