@@ -10,12 +10,12 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   regiForm: FormGroup; 
-  Email:string;
+  email:string;
   password:string;
 
   constructor(private fb: FormBuilder , private service: UserService , private router: Router) {
     this.regiForm = fb.group({
-      'Email':[null, Validators.compose([Validators.required,Validators.email])], 
+      'email':[null, Validators.compose([Validators.required,Validators.email])], 
       'password':[null, Validators.required]
     });  
    }
