@@ -1,92 +1,65 @@
-<!-- Card container that binds all togather -->  
-<mat-card>  
-  <!-- Title of an Card -->  
-  <mat-card-title>  
-      Register 
-  </mat-card-title>  
-
-  <!-- Actual content starts from here -->  
-  <mat-card-content>  
-      <form [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm)">  
-          <table>  
-              <tr>  
-                  <td>  
-                      <mat-form-field class="demo-full-width">  
-                          <input formControlName="Name" matInput placeholder="Name">  
-                      </mat-form-field>  
-                      <mat-error>  
-                          <span *ngIf="!regiForm.get('Name').valid && regiForm.get('Name').touched">Please enter First Name !!!</span>  
-                      </mat-error>  
-                  </td>
-              </tr>  
-              <tr>  
-                <td>  
-                    <mat-form-field class="demo-full-width">  
-                        <input formControlName="Email" matInput placeholder="Email">  
-                        <!-- <mat-hint>use like : demo@demo.com</mat-hint>   -->
-                        <mat-error>  
-                            <span *ngIf="!regiForm.get('Email').valid && regiForm.get('Email').touched">Enter proper Email !!!</span>  
-                        </mat-error>  
-                    </mat-form-field>  
-                </td>  
-            </tr> 
-              <tr>  
-                  <td>  
-                      <mat-form-field class="demo-full-width">  
-                            <input type="password" formControlName="Password" matInput placeholder="Password"> 
-                      </mat-form-field>  
-                      <mat-error>  
-                          <span *ngIf="!regiForm.get('Password').valid && regiForm.get('Password').touched">Please enter proper password !!!</span>  
-                      </mat-error>  
-                  </td>  
-              </tr>  
-              <tr>  
-                  <td>  
-                      <mat-form-field class="demo-full-width">  
-                          <input type="number" formControlName="Age" matInput placeholder="Age">
-                      </mat-form-field>  
-                      <mat-error>  
-                          <span *ngIf="!regiForm.get('Age').valid && regiForm.get('Age').touched">Enter valid age.</span>  
-                      </mat-error>  
-                  </td>  
-              </tr>  
-              <tr>
-                  <td>
-                      <mat-form-field class="demo-full-width">
-                          <input type="number" formControlName="Phone" matInput placeholder="Phone">
-                      </mat-form-field>
-                      <mat-error>  
-                          <span *ngIf="!regiForm.get('Phone').valid && regiForm.get('Phone').touched">Enter valid phone number.</span>  
-                      </mat-error> 
-                  </td>
-              </tr>
-              <tr>  
-                  <td>  
-                      <span>Gender</span><br><br>  
-                      <mat-radio-group formControlName="Gender">  
-                          <mat-radio-button value="Male">Male</mat-radio-button>  
-                          <mat-radio-button value="Female">Female</mat-radio-button>  
-                      </mat-radio-group>  
-                      <mat-error>  
-                          <span *ngIf="!regiForm.get('Gender').valid && regiForm.get('Gender').touched">Please select any gender !!!</span>  
-                      </mat-error>  
-                  </td>  
-              </tr>  
-              
-              <tr>  
-                  <td colspan="2">  
-                      <mat-slide-toggle formControlName="IsAccepted" (change)="onChange($event)">Accept Terms & Conditions</mat-slide-toggle>  
-                  </td>  
-              </tr>  
-              <tr>  
-                  <td colspan="2" class="content-center">  
-                      <button mat-raised-button color="accent" [disabled]="!regiForm.valid || IsAccepted==0">Submit</button>  
-                  </td>  
-              </tr>  
-              <tr>  
-                  <td></td>  
-              </tr>  
-          </table>  
-      </form>  
-  </mat-card-content>  
-</mat-card>  
+<div class="container-fluid bg-light py-3">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card card-body">
+                <h3 class="text-center mb-4">Sign-up</h3>
+                <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit(signupForm)" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="E-mail Address" formControlName="email" type="text">
+                            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                                <div *ngIf="email.errors.required">Email is required</div>
+                                <div *ngIf="email.errors.email">Invalid Email</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Password" formControlName="password" value="" type="password">
+                            <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+                                <div *ngIf="password.errors.required">Password is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Name" formControlName="name" value="" type="text">
+                            <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                                <div *ngIf="name.errors.required">Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Age" formControlName="age" value="" type="number">
+                            <div *ngIf="age.touched && age.invalid" class="alert alert-danger">
+                                <div *ngIf="age.errors.required">Age is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Phone" formControlName="phone" value="" type="number">
+                            <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">
+                                <div *ngIf="phone.errors.required">Phone is required</div>
+                                <div *ngIf="phone.errors.min">Too short</div>
+                                <div *ngIf="phone.errors.max">Too long</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Location" formControlName="location" value="" type="text">
+                            <div *ngIf="location.touched && location.invalid" class="alert alert-danger">
+                                <div *ngIf="location.errors.required">Location is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-muted">Gender</h3>
+                            <label class="radio-inline">
+                                <input type="radio" formControlName="gender" value="Male"> Male
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" formControlName="gender" value="Female"> Female
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" formControlName="file">
+                        </div>
+                        <input type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="signupForm.invalid" value="SignUp">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,7 @@ var responseHelper = require("../../../helpers/response");
 var db = require('../../../index');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
+const multer = require('multer');
 var main = {
     title: "Hello World",
     statusCode: constants.HTTP.CODES.SUCCESS
@@ -44,18 +45,18 @@ main.home = function (req, res, next) {
 }
 
 main.signup = function (req, res, next) {
-   // const user = req.body;
-    //console.log(user);
-     var hash = bcrypt.hashSync(req.body.Password, 8);
-    var sql ="INSERT INTO users (name,email,password,age,phone,gender) VALUES ?";
-    let userr = [
-        [req.body.Name, req.body.Email, hash, req.body.Age, req.body.Phone, req.body.Gender]
+//    console.log(req.file.path);
+   var data = req.body;
+     var hash = bcrypt.hashSync(req.body.password, 8);
+    var sql ="INSERT INTO users (name,email,password,age,phone,gender,location) VALUES ?";
+    let userDB = [
+        [req.body.name, req.body.email, hash, req.body.age, req.body.phone, req.body.gender, req.body.location]
     ];
-    db.db.query(sql, [userr], function (err, user) {
+    db.db.query(sql, [userDB], function (err, user) {
     if (err) throw err;
     // console.log(user);
     // create a token
-    var token = jwt.sign({ id: user.insertId , name: req.body.Name }, "mySecret", {
+    var token = jwt.sign({ user: data }, "mySecret", {
         expiresIn: 7200
       });
     res.send({ status:200,auth: true, token: token });
@@ -65,7 +66,7 @@ main.signup = function (req, res, next) {
 main.login = function (req, res, next) {
 
     var sql_query = "SELECT * FROM users WHERE email=?";
-    let emId = [req.body.Email];
+    let emId = [req.body.email];
     db.db.query(sql_query ,[emId] , (err , result)=> {
         if (err) return res.status(500).send('Error on the server.');
         if (!result) return res.status(404).send('No user found.');
@@ -76,7 +77,7 @@ main.login = function (req, res, next) {
         // console.log(passwordIsValid);
         // console.log(result[0].id);
         if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
-        var token = jwt.sign({ id : result[0].id , user : result[0]},"mySecret",{
+        var token = jwt.sign({user : result[0]},"mySecret",{
             expiresIn: 7200
         });
         res.send({ status:200, auth: true, token: token });

@@ -1,6 +1,6 @@
 import { UserService } from './../../services/user.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators ,FormsModule,NgForm } from '@angular/forms'; 
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,50 +9,46 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  signupForm: FormGroup;
 
-  regiForm: FormGroup; 
-  Name : String;
-  Email:String;
-  Password:String; 
-  Age:String;
-  Phone:Number;
-  Gender:String;  
-  IsAccepted:Number = 0;
-
-  constructor(private fb: FormBuilder , private service: UserService , private router: Router) {
-    // To initialize FormGroup  
-    this.regiForm = fb.group({
-      'Name' : [null, Validators.required],  
-      'Email':[null, Validators.compose([Validators.required,Validators.email])], 
-      'Password' : [null, Validators.required],  
-      'Age' : [null, Validators.required],  
-      'Phone' : [null, Validators.compose([Validators.required,Validators.minLength(11),Validators.maxLength(13)])],  
-      'Gender':[null, Validators.required],
-      'IsAccepted':[null]
-    });  
+  constructor(private fb: FormBuilder,
+    private service: UserService,
+    private router: Router,
+    private cd: ChangeDetectorRef
+  ) {
+    this.signupForm = this.fb.group({
+      name: [null, Validators.required],
+      email: [null, Validators.compose([Validators.required, Validators.email])],
+      password: [null, Validators.required],
+      age: [null, Validators.required],
+      phone: [null, [Validators.required, Validators.min(1111111111), Validators.max(9999999999999)]],
+      gender: [null, Validators.required],
+      location: [null, Validators.required],
+      file: [null, Validators.required]
+    });
    }
-   // On Change event of Toggle Button  
-  onChange(event:any)  
-  {  
-    if (event.checked == true) {  
-      this.IsAccepted = 1;  
-    } else {  
-      this.IsAccepted = 0;  
-    }  
-  }  
-  
-  // Executed When Form Is Submitted  
-  onFormSubmit(form:NgForm)  
-  {  
-    // console.log(form.value); 
-     this.service.post('signup' ,form.value).subscribe(res =>{
-       if(res){
-          this.router.navigate(['dashboard']);
-       }
-     });
-  }  
+
+
+  get name() { return this.signupForm.get('name') }
+  get email() { return this.signupForm.get('email') }
+  get password() { return this.signupForm.get('password') }
+  get age() { return this.signupForm.get('age') }
+  get phone() { return this.signupForm.get('phone') }
+  get gender() { return this.signupForm.get('gender') }
+  get location() { return this.signupForm.get('location') }
+  // get file(){ return this.signupForm.get('file')}
+  // set userAvatar(val:any){ this.userAvatar = val; }  
 
   ngOnInit() {
+  }
+
+  onFormSubmit(form: NgForm) {
+    console.log(form.value);
+    this.service.post('signup', form.value).subscribe(res => {
+      if (res) {
+        this.router.navigate(['dashboard']);
+      }
+    });``
   }
 
 }
