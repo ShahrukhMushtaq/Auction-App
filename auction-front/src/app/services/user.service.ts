@@ -16,9 +16,10 @@ export class UserService {
     // header.append('Content-Type', 'multipart/form-data');, { headers: header } 
     return this.http.post(this.base_url + url, data)
       .map(res => {
-        let result = res.json();
-        if (result && result.token) {
-          localStorage.setItem('Token', result.token);
+        // let result = res.json();
+        //if (result && result.token) {
+        //localStorage.setItem('Token', result.token);
+        if (res.json()) {
           return true;
         }
         return false;
