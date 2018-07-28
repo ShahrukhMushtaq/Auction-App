@@ -1,0 +1,65 @@
+<div class="container toppad">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="text-center panel-title">Add Product For Auction</h2>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <label class="col-sm-2 control-label">Title</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" placeholder="Title" formControlName="title">
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+          <label class="col-sm-2 control-label">Description</label>
+          <div class="col-sm-4">
+            <textarea class="form-control" rows="2" cols="20" placeholder="Description"formControlName="description"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+          <label class="col-sm-2 control-label">Category</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" placeholder="Category" formControlName="category">
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+          <label for="name" class="col-sm-2 control-label">Upload Photos</label>
+          <div class="col-sm-3">
+            <label class="control-label small">Format (jpg/png):</label>
+            <input type="file" class="form-control-file" (change)="onChange($event)" #fileInput>
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+          <label class="col-sm-2 control-label">Timing</label>
+          <div class="col-sm-3">
+            <label class="control-label small">End Date</label>
+            <input type="date" class="form-control" formControlName="endDate">
+          </div>
+          <div class="col-sm-3">
+            <label class="control-label small">End Time</label>
+            <input type="time" class="form-control" formControlName="endTime">
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+          <label class="col-sm-2 control-label">Bid Starting Amount</label>
+          <div class="col-sm-3">
+            <input type="number" class="form-control" formControlName="bidAmount">
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-5">
+            <button type="submit" [disabled]="productForm.invalid" class="btn btn-lg btn-primary">Add For Auction</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
