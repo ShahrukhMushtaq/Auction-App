@@ -1,4 +1,4 @@
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
     // console.log(this.upvc.currentUser.user.userAvatar);
     this.imageUrl = this.upvc.currentUser.user.userAvatar;
     this.imageUrl = this.imageUrl.slice(this.imageUrl.lastIndexOf('\\') + 1);
-    //  console.log(this.imageUrl);
+     console.log(this.imageUrl);
 
 
   }

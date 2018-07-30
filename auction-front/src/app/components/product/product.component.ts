@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ProductService } from "../../services/product.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-product',
@@ -9,10 +10,12 @@ import { ProductService } from "../../services/product.service";
 })
 export class ProductComponent implements OnInit {
   productForm: FormGroup;
+  flag: boolean;
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private fb: FormBuilder,
-    private ps: ProductService
+    private ps: ProductService,
+    private router: Router
   ) {
     this.createform();
   }
@@ -48,12 +51,16 @@ export class ProductComponent implements OnInit {
   }
 
   onSubmit() {
-    const form = this.prepareSave();
-    console.log(form);
-    this.ps.addAuction(form , "addauction").subscribe(data => {console.log(data)});
+    const formData = this.prepareSave();
+    console.log(formData);
+    this.router.navigate(["live-auction"]);
+    // this.ps.addAuction('addauction', formData).subscribe(res => {
+    //   if (res) {
+    //     console.log(res);
+    //   }
+    // });
 
   }
-
 
   ngOnInit() {
   }

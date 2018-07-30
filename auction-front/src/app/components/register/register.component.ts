@@ -1,4 +1,4 @@
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../services/user.service';
 import { Component, OnInit, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -57,7 +57,6 @@ export class RegisterComponent implements OnInit {
 
   private prepareSave(): any {
     let input = new FormData();
-    // This can be done a lot prettier; for example automatically assigning values by looping through `this.form.controls`, but we'll keep it as simple as possible here
     input.append('name', this.signupForm.get('name').value);
     input.append('email', this.signupForm.get('email').value);
     input.append('password', this.signupForm.get('password').value);

@@ -1,3 +1,4 @@
+import { ProductService } from './services/product.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -36,6 +37,8 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProductComponent } from './components/product/product.component';
+import { LiveauctionComponent } from './components/liveauction/liveauction.component';
 
 
 @NgModule({
@@ -45,7 +48,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     LoginComponent,
     DashboardComponent,
     NavComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductComponent,
+    LiveauctionComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,9 @@ import { ProfileComponent } from './components/profile/profile.component';
       { path: 'Login', component: LoginComponent },
       { path: 'Register', component: RegisterComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+      { path: 'add-product', component: ProductComponent, canActivate: [AuthGuard] },
+      { path: 'live-auction', component: LiveauctionComponent, canActivate: [AuthGuard] },
     ]),
     HttpModule,
     MatButtonModule,
@@ -80,7 +87,8 @@ import { ProfileComponent } from './components/profile/profile.component';
   ],
   providers: [
     UserService,
-    AuthGuard
+    AuthGuard,
+    ProductService
   //  {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent]

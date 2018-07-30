@@ -3,15 +3,16 @@ import { HttpModule, Http, Headers } from "@angular/http";
 
 @Injectable()
 export class ProductService {
+  base_url = 'http://localhost:3000/api/';
 
   constructor(private http: Http) { }
 
-  public addAuction(data, url) {
-    this.http.post("http://localhost:3000/api/" + url, data).map(res => {
-      if (res) {
-        let result = res.json();
-        return result;
+  addAuction(url , data) {
+    return this.http.post(this.base_url + url, data).map(res => {
+      if (res.json()) {
+        return true;
       }
+      return false;
     });
   }
 

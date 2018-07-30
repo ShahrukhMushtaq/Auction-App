@@ -35,6 +35,11 @@ router.post('/login', main.login);
 router.post('/signup', upload.single('userImage'), main.signup);
 router.get('/logout', main.logout);
 
+router.post('/addauction', (req , res) =>{
+    res.send("true");
+    console.log("Run");
+});
+
 /****/
 //
 module.exports = router;
